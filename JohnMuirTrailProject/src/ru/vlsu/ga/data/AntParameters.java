@@ -16,8 +16,17 @@ public class AntParameters {
 	public static final double EXPECTED_FITNESS = 80;
 	
 	//Количество поколений
-	public static final int GENERATION_SIZE = 2000;
+	public static final int GENERATION_SIZE = 1000;
 	
 	//Количество состояний
 	public static final int COUNT_OF_STATES = 4;
+
+	//Количество вариантов входящей информации
+	public static final int COUNT_OF_INPUT = 2;
+	
+	//Папка и наименование файла с результатами
+	public static final String RESULT_FILE = "results/generation_.txt";
+	
+	//Количество поколений
+	public static final int COUNT_OF_GENERATIONS = 10;
 }
