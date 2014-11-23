@@ -25,8 +25,10 @@ public class GARunner {
 			GeneticGeneration model = new GeneticGeneration(AntParameters.EXPECTED_FITNESS, 
 					AntParameters.GENERATION_SIZE, AntParameters.COUNT_OF_STATES);
 			StateMachine[] currentGeneration = model.getCurrentGeneration();
-			for (StateMachine sm : currentGeneration)
-				StateMachine.printStateMachineToFile(fileStream, sm);
+			for (StateMachine sm : currentGeneration){
+				sm = BitStringUtils.calculateBitStringForStateMachine(sm);
+				FileUtils.printStateMachineToFile(fileStream, sm);
+			}
 			fileStream.close();
 			if (i == 0)
 				testGeneration = currentGeneration;

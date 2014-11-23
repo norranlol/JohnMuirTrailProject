@@ -48,6 +48,25 @@ public class BitStringUtils {
 		return null;
 	}
 	
+	public static StateMachine calculateBitStringForStateMachine(StateMachine stateMachine){
+		String stateMachineBitString = "";
+		Transition[][] transitions = stateMachine.getTransitions();
+		//Битовое представление начального состояния
+		stateMachineBitString += Transition.calculateBitString(stateMachine.getInitialState()) + " ";
+		for (int i = 0; i < AntParameters.COUNT_OF_STATES; i++){
+			for (int j = 0; j < AntParameters.COUNT_OF_INPUT; j++){
+				//Битовое представление исходного состояния
+				stateMachineBitString += transitions[i][j].getFromStateNumberBitString();
+				//Битовое представление нового состояния
+				stateMachineBitString += transitions[i][j].getToStateNumberBitString();
+				//Битовое представление действия
+				stateMachineBitString += transitions[i][j].getAction().getBitValue() + " ";
+			}
+		}
+		stateMachine.setBitStringStateMachine(stateMachineBitString);
+		return stateMachine;
+	}
+	
 	private static int getNumberOfStateByBitString(String bitString){
 		switch (bitString){
 			case Transition.BITSTRING_0:

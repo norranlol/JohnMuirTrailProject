@@ -42,28 +42,6 @@ public class StateMachine {
 		}
 		return new StateMachine(transitions, initialState);
 	}
-	
-	public static void printStateMachineToFile(PrintStream fileStream, StateMachine stateMachine){
-		String stateMachineBitString = "";
-		Transition[][] transitions = stateMachine.getTransitions();
-		fileStream.println("Initial state = " + stateMachine.getInitialState());
-		//Битовое представление начального состояния
-		stateMachineBitString += Transition.calculateBitString(stateMachine.getInitialState()) + " ";
-		for (int i = 0; i < AntParameters.COUNT_OF_STATES; i++){
-			for (int j = 0; j < AntParameters.COUNT_OF_INPUT; j++){
-				fileStream.println(transitions[i][j].toString());
-				//Битовое представление исходного состояния
-				stateMachineBitString += transitions[i][j].getFromStateNumberBitString();
-				//Битовое представление нового состояния
-				stateMachineBitString += transitions[i][j].getToStateNumberBitString();
-				//Битовое представление действия
-				stateMachineBitString += transitions[i][j].getAction().getBitValue() + " ";
-			}
-		}
-		stateMachine.setBitStringStateMachine(stateMachineBitString);
-		fileStream.println("BitString - " + stateMachine.getBitStringStateMachine());
-		fileStream.println("============================================");
-	}
 
 	public Transition[][] getTransitions() {
 		return transitions;
